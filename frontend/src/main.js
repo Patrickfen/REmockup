@@ -13,6 +13,11 @@ Vue.prototype.axios = axios.create();
 //Import root component
 import App from './App.vue'
 
+//Import UI framework
+import Element from 'element-ui'
+//CSS is imported by CDN
+Vue.use(Element)
+
 //Create instance
 new Vue({
     router,

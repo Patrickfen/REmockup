@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "element-ui": "^2.12.0",
     "lodash": "^4.17.11",
     "package.json": "^2.0.1",
     "vue": "^2.5.17",
