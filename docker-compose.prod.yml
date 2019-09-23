@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+
+    frontend:
+        image: "airstorage/frontend:prod"
+        build:
+            target: prod
+            context: ./frontend
+
+    nginx:
+        command: nginx -g "daemon off";
+        image: "airstorage/nginx:prod"
+        build:
+            target: prod
+            context: ./nginx
+        networks:
+            - public
+        labels:
+            - "traefik.enable=true"
+            - "traefik.backend=nginx"
+            - "traefik.frontend.rule=Host:ubuntu64"
+            - "traefik.port=80"
+            - "traefik.docker.network=web"
+
+networks:
+    private:
+        external:
+            name: private
+    public:
+        external:
+            name: public

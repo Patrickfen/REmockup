@@ -1,0 +1,19 @@
+version: "3.7"
+
+services:
+
+    frontend:
+        image: "airstorage/frontend:dev"
+        build:
+            target: dev
+            context: ./frontend
+        volumes:
+            - ./frontend:/usr/src/app
+        ports:
+            - "8800:80"
+
+    nginx:
+        image: "airstorage/nginx:dev"
+        build:
+            target: prod
+            context: ./nginx
