@@ -1,13 +1,11 @@
 <template>
-    <b-container>
-        <router-view />
-    </b-container>
+    <router-view class="overflow-hidden" />
 </template>
 
 <script>
 export default {
     name: 'app',
-    created(){
+    created() {
         console.log('App init');
     }
 }

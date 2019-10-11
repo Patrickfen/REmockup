@@ -11,7 +11,7 @@
         name: 'score',
         props: { 
             value: {
-                type: Object,
+                type: Number,
                 required: true
             }
         }
