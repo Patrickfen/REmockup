@@ -14,9 +14,9 @@ Vue.prototype.axios = axios.create();
 import App from './App.vue'
 
 //Import UI framework
-import VueMaterial from 'vue-material'
-//CSS imports in public/index.html
-Vue.use(VueMaterial)
+import BootstrapVue from 'bootstrap-vue'
+
+Vue.use(BootstrapVue)
 
 //Create instance
 new Vue({

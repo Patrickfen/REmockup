@@ -1,42 +1,17 @@
 <template>
-    <div class="page-container">
-    <md-app>
-      <md-app-toolbar class="md-primary">
-        <span class="md-title">My Title</span>
-      </md-app-toolbar>
-
-      <md-app-drawer md-permanent="full">
-        <md-toolbar class="md-transparent" md-elevation="0">
-          Navigation
-        </md-toolbar>
-
-        <md-list>
-          <md-list-item>
-            <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Inbox</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>send</md-icon>
-            <span class="md-list-item-text">Sent Mail</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>delete</md-icon>
-            <span class="md-list-item-text">Trash</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>error</md-icon>
-            <span class="md-list-item-text">Spam</span>
-          </md-list-item>
-        </md-list>
-      </md-app-drawer>
-
-      <md-app-content>
+    <div>
+  <b-button size="sm" @click="toggle">
+    {{ show ? 'Hide' : 'Show' }} Alert
+  </b-button>
+  <b-alert
+    v-model="show"
+    class="mt-3"
+    dismissible
+    @dismissed="dismissed"
+  >
+    Hello {{ name }}!
+  </b-alert>
         <router-view/>
-      </md-app-content>
-    </md-app>
   </div>
 </template>
 
@@ -50,5 +25,6 @@ export default {
 </script>
 
 <style lang="scss">
-
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/bootstrap-vue/src/index.scss';
 </style>
