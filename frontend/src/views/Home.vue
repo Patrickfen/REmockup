@@ -1,8 +1,7 @@
 <template>
-    <div>
-        This is the home page
-        <el-button>Default</el-button>
-    </div>
+    <b-container>
+        home
+    </b-container>
 </template>
 
 <script>

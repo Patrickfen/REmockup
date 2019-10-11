@@ -1,10 +1,12 @@
 <template>
-    <div>hi</div>
+    <b-container>
+        listings
+    </b-container>
 </template>
 
 <script>
     export default {
-        name: 'home',
+        name: 'listings',
     }
 </script>
 
