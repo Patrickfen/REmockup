@@ -14,9 +14,9 @@ Vue.prototype.axios = axios.create();
 import App from './App.vue'
 
 //Import UI framework
-import Element from 'element-ui'
-//CSS is imported by CDN
-Vue.use(Element)
+import VueMaterial from 'vue-material'
+
+Vue.use(VueMaterial)
 
 //Create instance
 new Vue({

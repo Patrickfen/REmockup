@@ -12,6 +12,7 @@
     "lodash": "^4.17.11",
     "package.json": "^2.0.1",
     "vue": "^2.5.17",
+    "vue-material": "^1.0.0-beta-11",
     "vue-router": "^3.0.1",
     "vuedraggable": "^2.19.1",
     "vuex": "^3.0.1"
