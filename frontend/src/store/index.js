@@ -3,7 +3,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 Vue.use(Vuex)
 
-//import exampleModule from './exampleModule.js'
+
+import sessionModule from './sessionModule.js'
 export default new Vuex.Store({
-    modules:{}
+    modules:{
+        'session':sessionModule
+    }
 })
