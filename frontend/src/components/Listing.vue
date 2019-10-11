@@ -1,9 +1,7 @@
 <template>
     <b-card no-body class="overflow-hidden">
         <b-row no-gutters>
-            <b-col md="6">
-                <b-card-img :src="prop_listing.Image" class="rounded-0"></b-card-img>
-            </b-col>
+            <picture-chooser :images="prop_listing.Image"></picture-chooser>
             <b-col md="6">
                 <b-card-body :title="prop_listing.Name">
                     <prop-text :prop_listing="prop_listing">
@@ -19,11 +17,11 @@
 <script>
 import text from "./Listing-text.vue"
 import star from "./Score.vue"
+import pictureChooser from "./VPictureChooser.vue"
     export default {
         name: 'listings',
         data() {
             return {
-                "" : ""
             }
         },
         props: {
@@ -34,7 +32,15 @@ import star from "./Score.vue"
         },
         components: {
             "prop-text": text,
-            "star": star
+            "star": star,
+            "picture-chooser": pictureChooser
+        },
+        mounted(){
+            /*var ctx = this;
+            window.addEventListener('resize', function(){
+                ctx.halfSize = ctx.$refs.listingContainer.clientHeight / 2;
+            });
+            ctx.halfSize = ctx.$refs.listingContainer.clientHeight / 2;*/
         }
     }
 </script>
