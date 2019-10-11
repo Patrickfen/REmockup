@@ -15,7 +15,7 @@ import App from './App.vue'
 
 //Import UI framework
 import VueMaterial from 'vue-material'
-
+//CSS imports in public/index.html
 Vue.use(VueMaterial)
 
 //Create instance

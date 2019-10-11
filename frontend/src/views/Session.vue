@@ -1,8 +1,5 @@
 <template>
-    <el-container>
-        <el-header>This is the home page</el-header>
-        <el-button>Default</el-button>
-    </el-container>
+    <div>hi</div>
 </template>
 
 <script>
