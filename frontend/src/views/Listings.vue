@@ -34,6 +34,7 @@ import listing from "../components/Listing.vue"
                                     "text" : "Perfect for za world"},
                         
                                     ],
+                        "Profile" : "https://s4.anilist.co/file/anilistcdn/character/large/89028-CmMSkY9TcWZq.jpg",
                         "Verified" : "True"
                     }, 
                     {
@@ -100,11 +101,14 @@ import listing from "../components/Listing.vue"
                 Object.keys(this.order).forEach(key => {
                     let value = this.order[key];
                     for (let j = 0; j < this.prop_listings.length; j++) {
-                        if (this.prop_listings[j] !== prop_listing && 
-                                ! value.includes(this.prop_listings[j].Name) &&
-                                (value.includes(prop_listing.Name) || key == prop_listing.Name)) {
-                            value.push(this.prop_listings[j].Name);
-                            console.log("JA IK KOM HIER IN OINGO BOINGO")
+                        // If was chosen or contains the element that was chosen, we want to add all non-chosen elements
+                        // to that ordering.
+                        if (value.includes(prop_listing.Name) || key == prop_listing.Name) {
+                            // Filter the element that was chosen. Filter duplicates.
+                            if(this.prop_listings[j] !== prop_listing && !value.includes(this.prop_listings[j].Name)) {
+                                value.push(this.prop_listings[j].Name);
+                                console.log("JA IK KOM HIER IN OINGO BOINGO")
+                            }
                         }
                     }
                     this.order[key] = value;
@@ -145,7 +149,7 @@ import listing from "../components/Listing.vue"
                     array.push([key, value.length])
                 })
                 array.sort(function(a, b) {
-                    return a[1] - b[1];
+                    return b[1] - a[1];
                 });
                 
                 for(let i = 0; i < array.length; i++) {
@@ -164,10 +168,6 @@ import listing from "../components/Listing.vue"
             }
         },
         props: {
-            // prop_listings: {Duplicate keys detected: '[object Object]'. This may cause an update error.
-            //     type: Object,
-            //     required: true
-            // }
         },
         components: {
             'listing': listing

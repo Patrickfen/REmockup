@@ -5,8 +5,14 @@
             <b-col md="6" @click="choose()">
                 <badge class="badge" v-if="prop_listing.Verified == 'True'" />
                 <b-card-body :title="prop_listing.Name">
-                    <prop-text :prop_listing="prop_listing">
-                    </prop-text>
+                    <b-row>
+                        <b-col md="6" class="">
+                            <prop-text :prop_listing="prop_listing" />
+                        </b-col>
+                        <b-col md="6" class="">
+                            <profile v-if="prop_listing.Profile" :url="prop_listing.Profile" />
+                        </b-col>
+                    </b-row>
                     <star :value="prop_listing.Stars" class="star"/>
                     <review-list :reviews="prop_listing.Review"/>
                 </b-card-body>
@@ -21,6 +27,7 @@ import star from "./Score.vue"
 import pictureChooser from "./VPictureChooser.vue"
 import reviewList from "./VReviewList.vue"
 import badge from "./VBadge.vue"
+import profile from "./VProfile.vue"
     export default {
         name: 'listings',
         data() {
@@ -38,7 +45,8 @@ import badge from "./VBadge.vue"
             "star": star,
             "picture-chooser": pictureChooser,
             "review-list" : reviewList,
-            "badge" : badge
+            "badge" : badge,
+            "profile" : profile
         },
         mounted(){
         },
@@ -57,7 +65,7 @@ import badge from "./VBadge.vue"
     }
     .badge {
         float: right;
-        margin-right: 30px;
+        // margin-right: 50px;
         margin-top: 10px
     }
 

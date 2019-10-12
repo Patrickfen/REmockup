@@ -29,5 +29,6 @@
 <style scoped lang="scss">
     ul {
         list-style-type: "";
+        padding-left: 0px;
     }
 </style>
