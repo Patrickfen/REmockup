@@ -1,8 +1,8 @@
 <template>
     <b-card no-body class="overflow-hidden">
-        <b-row no-gutters>
+        <b-row no-gutters class="properties">
             <picture-chooser :images="prop_listing.Image"></picture-chooser>
-            <b-col md="6">
+            <b-col md="6" @click="choose()">
                 <badge class="badge" v-if="prop_listing.Verified == 'True'" />
                 <b-card-body :title="prop_listing.Name">
                     <prop-text :prop_listing="prop_listing">
@@ -41,11 +41,20 @@ import badge from "./VBadge.vue"
             "badge" : badge
         },
         mounted(){
+        },
+        methods: {
+            choose() {
+                console.log(this.prop_listing.Cost)
+            }
         }
     }
 </script>
 
 <style scoped lang="scss">
+    .properties:hover {
+        background-color: lightgray;    
+        cursor: pointer;
+    }
     .badge {
         float: right;
         margin-right: 30px;

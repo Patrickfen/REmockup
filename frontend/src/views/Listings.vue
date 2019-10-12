@@ -30,9 +30,7 @@ import listing from "../components/Listing.vue"
                                 {"author" : "Oingo Boingo Brothers", 
                                 "time" : "5 hours ago",
                                 "text" : "Great Place, No hastle"},
-                                {"author" : "Oingo Boingo Brothers", 
-                                "time" : "5 hours ago",
-                                "text" : "Great Place, No hastle"},
+                    
                                 ],
                     "Verified" : "True"
                 }, 
