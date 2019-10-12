@@ -3,11 +3,12 @@
         <b-row no-gutters>
             <picture-chooser :images="prop_listing.Image"></picture-chooser>
             <b-col md="6">
+                <badge class="badge" v-if="prop_listing.Verified == 'True'" />
                 <b-card-body :title="prop_listing.Name">
                     <prop-text :prop_listing="prop_listing">
                     </prop-text>
-                    <star :value="prop_listing.Stars">
-                    </star>
+                    <star :value="prop_listing.Stars" class="star"/>
+                    <review-list :reviews="prop_listing.Review"/>
                 </b-card-body>
             </b-col>
         </b-row>
@@ -18,6 +19,8 @@
 import text from "./Listing-text.vue"
 import star from "./Score.vue"
 import pictureChooser from "./VPictureChooser.vue"
+import reviewList from "./VReviewList.vue"
+import badge from "./VBadge.vue"
     export default {
         name: 'listings',
         data() {
@@ -33,17 +36,23 @@ import pictureChooser from "./VPictureChooser.vue"
         components: {
             "prop-text": text,
             "star": star,
-            "picture-chooser": pictureChooser
+            "picture-chooser": pictureChooser,
+            "review-list" : reviewList,
+            "badge" : badge
         },
         mounted(){
-            /*var ctx = this;
-            window.addEventListener('resize', function(){
-                ctx.halfSize = ctx.$refs.listingContainer.clientHeight / 2;
-            });
-            ctx.halfSize = ctx.$refs.listingContainer.clientHeight / 2;*/
         }
     }
 </script>
 
 <style scoped lang="scss">
+    .badge {
+        float: right;
+        margin-right: 30px;
+        margin-top: 10px
+    }
+
+    .star {
+        margin-left: 25px;
+    }
 </style>

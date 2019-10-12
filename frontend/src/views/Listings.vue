@@ -20,7 +20,21 @@ import listing from "../components/Listing.vue"
                     "Security": "GPS / Camera Available",
                     "Image": ["https://picsum.photos/400/400/?image=20",
                     "https://picsum.photos/400/400/?image=20"] ,
-                    "Stars" : 5
+                    "Stars" : 5,
+                    "Review" : [{"author" : "Oingo Boingo Brothers", 
+                                "time" : "5 hours ago",
+                                "text" : "Great Place, No hastle"},
+                                {"author" : "Oingo Boingo Brothers", 
+                                "time" : "5 hours ago",
+                                "text" : "Great Place, No hastle"},
+                                {"author" : "Oingo Boingo Brothers", 
+                                "time" : "5 hours ago",
+                                "text" : "Great Place, No hastle"},
+                                {"author" : "Oingo Boingo Brothers", 
+                                "time" : "5 hours ago",
+                                "text" : "Great Place, No hastle"},
+                                ],
+                    "Verified" : "True"
                 }, 
                 {
                     "Name" : "Storage Minnesota",
