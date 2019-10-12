@@ -44,7 +44,7 @@ import badge from "./VBadge.vue"
         },
         methods: {
             choose() {
-                console.log(this.prop_listing.Cost)
+                this.$parent.choose(this.prop_listing)
             }
         }
     }
