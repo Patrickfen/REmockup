@@ -4,7 +4,7 @@
             <b-col md="6">
                 <b-card-img :src="prop_listing.Image" class="rounded-0"></b-card-img>
             </b-col>
-            <b-col md="6">
+            <b-col md="6" class = "properties" @click="choose(prop_listing)">
                 <b-card-body :title="prop_listing.Name">
                     <prop-text :prop_listing="prop_listing">
                     </prop-text>
@@ -35,9 +35,18 @@ import star from "./Score.vue"
         components: {
             "prop-text": text,
             "star": star
+        },
+        methods: {
+            choose(listing) {
+                console.log(listing.Cost)
+            }
         }
     }
 </script>
 
 <style scoped lang="scss">
+.properties:hover {
+    background-color: lightgray;    
+    cursor: pointer;
+}
 </style>
