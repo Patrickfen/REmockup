@@ -1,15 +1,14 @@
 <template>
     <b-card no-body class="overflow-hidden">
         <b-row no-gutters>
+            <picture-chooser :images="prop_listing.Image"></picture-chooser>
             <b-col md="6">
-                <b-card-img :src="prop_listing.Image" class="rounded-0"></b-card-img>
-            </b-col>
-            <b-col md="6">
+                <badge class="badge" v-if="prop_listing.Verified == 'True'" />
                 <b-card-body :title="prop_listing.Name">
                     <prop-text :prop_listing="prop_listing">
                     </prop-text>
-                    <star :value="prop_listing.Stars">
-                    </star>
+                    <star :value="prop_listing.Stars" class="star"/>
+                    <review-list :reviews="prop_listing.Review"/>
                 </b-card-body>
             </b-col>
         </b-row>
@@ -19,11 +18,13 @@
 <script>
 import text from "./Listing-text.vue"
 import star from "./Score.vue"
+import pictureChooser from "./VPictureChooser.vue"
+import reviewList from "./VReviewList.vue"
+import badge from "./VBadge.vue"
     export default {
         name: 'listings',
         data() {
             return {
-                "" : ""
             }
         },
         props: {
@@ -34,10 +35,24 @@ import star from "./Score.vue"
         },
         components: {
             "prop-text": text,
-            "star": star
+            "star": star,
+            "picture-chooser": pictureChooser,
+            "review-list" : reviewList,
+            "badge" : badge
+        },
+        mounted(){
         }
     }
 </script>
 
 <style scoped lang="scss">
+    .badge {
+        float: right;
+        margin-right: 30px;
+        margin-top: 10px
+    }
+
+    .star {
+        margin-left: 25px;
+    }
 </style>
