@@ -1,0 +1,129 @@
+[{
+    "Name": "10x20 Climate Controlled Storage Unit",
+    "Owner": "A-Side Self Storage",
+    "Availability": "Business Hours",
+    "Security": "Locked Area, Security Camera, Smoke Detectors",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/5709/39889/2560x2560/39889.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5709/39890/800x800/39890.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5709/39887/800x800/39887.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5709/39885/800x800/39885.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5709/39884/800x800/39884.jpeg"
+    ], 
+    "Stars": 2,
+    "Profile": "https://d3euylfisilp84.cloudfront.net/9687/42307/200x200/42307.jpg",
+    "Verified": "True"
+},
+{
+    "Name": "Personal Storage Shed",
+    "Owner": "Ashlyn",
+    "Availability": "24/7",
+    "Security": "Personal padlock",
+    "Image": [ "https://d3mjpbzzco5v9p.cloudfront.net/10687/69126/800x800/69126.png",
+        "https://d3mjpbzzco5v9p.cloudfront.net/10687/69127/800x800/69127.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/10687/69125/800x800/69125.png"
+    ],
+    "Profile": "https://www.stockvault.net/data/2016/03/12/187411/preview16.jpg",
+    "Stars": 4
+},
+{
+    "Name": "Basement Storage Space",
+    "Owner": "Aimee",
+    "Availability": "By Appointment Only",
+    "Security": "Smoke Detectors, Secured by Vivint Exact, Address known after reserving",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/12352/75193/800x800/75193.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/12352/75190/2560x2560/75190.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/12352/75188/800x800/75188.jpg"
+    ],
+    "Stars": 4,
+    "Profile": "https://d9lvjui2ux1xa.cloudfront.net/missing.png"
+},
+{
+    "Name": "Pleasant Basement Storage Space",
+    "Owner": "Ali",
+    "Availability": "By Appointment Only",
+    "Security": "Locked Area, Smoke Detectors, Address known after reserving",
+    "Image": ["https://d9lvjui2ux1xa.cloudfront.net/img/defaultListingImage.jpg"],
+    "Stars": 5,
+    "Profile": "https://d3euylfisilp84.cloudfront.net/16290/66868/400x400/66868.jpeg"
+},
+{
+    "Name": "Fenced Outdoor Storage",
+    "Owner": "Andy",
+    "Availability": "24/7",
+    "Security": "Private Entrance, surrounded by fences on all sides.",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/268/13584/800x800/13584.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/268/13586/800x800/13586.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/268/13585/800x800/13585.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/268/13587/800x800/13587.jpeg"
+    ],
+    "Stars": 5,
+    "Profile": "https://d3euylfisilp84.cloudfront.net/998/515/400x400/515.png",
+    "Verified": "True"
+},
+{
+    "Name": "Garage Space",
+    "Owner": "Mafi",
+    "Availability": "By Appointment Only",
+    "Security": "Private Entrance, Locked Area, Smoke Detectors.",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/8142/56959/2560x2560/56959.jpg"],
+    "Stars": 5,
+    "Profile": "https://d9lvjui2ux1xa.cloudfront.net/missing.png",
+    "Verified": "True"
+},
+{
+    "Name": "Student storage/Boxes #1",
+    "Owner": "Willemijn",
+    "Availability": "24/7",
+    "Security": "Locked Area, Private Entrance.",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/5560/74278/800x800/74278.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5560/38665/800x800/38665.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5560/38664/800x800/38664.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/2241/10155/800x800/10155.jpg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/2241/10152/800x800/10152.jpg"
+    ],
+    "Stars": 5,
+    "Profile": "https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/k-98-pom-3340.jpg?auto=format&bg=F4F4F3&con=3&cs=srgb&dpr=1&fm=jpg&ixlib=php-1.1.0&mark=rawpixel-watermark.png&markalpha=90&markpad=13&markscale=10&markx=25&q=75&usm=15&vib=3&w=1200&s=6c74f1fe52934e8e248b5e15646101f5",
+    "Verified": "True",
+    "Review": [{
+        "author": "Henk F.",
+        "time": "3 weeks ago",
+        "text": "Very flexible and willing to work with you for you and your storage needs."
+    }]
+},
+{
+    "Name": "The Bunker: Neighborly Basement Storage Space",
+    "Owner": "Matthias",
+    "Availability": "By Appointment Only",
+    "Security": "Access only when permitted",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/5446/37812/2560x2560/37812.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5446/37818/800x800/37818.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5446/37817/800x800/37817.jpeg",
+        "https://d3mjpbzzco5v9p.cloudfront.net/5446/37815/800x800/37815.jpeg"
+    ],
+    "Stars": 5,
+    "Profile": "https://i.pinimg.com/originals/a2/04/b1/a204b169f26ed3682ab91c0233e4ac62.jpg",
+    "Review": [{
+        "author": "Sjonnie Smit.",
+        "time": "2 months ago",
+        "text": "This place sucks. When I got there, my stuff was all broken. I have no idea how this place got 5 stars. Would not reccomend."
+    }]
+},
+{
+    "Name": "Neighborly Other Storage Space",
+    "Owner": "David",
+    "Availability": "24/7",
+    "Security": "Private Entrance, Locked Area, Security Camera",
+    "Image": ["https://d9lvjui2ux1xa.cloudfront.net/img/defaultListingImage.jpg"],
+    "Stars": 5,
+    "Profile": "https://d9lvjui2ux1xa.cloudfront.net/missing.png"
+},
+{
+    "Name": "Basement Room Available",
+    "Owner": "Greta",
+    "Availability": "By Appointment Only",
+    "Security": "Smoke Detectors",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/5638/41742/2560x2560/41742.jpeg"],
+    "Stars": 2,
+    "Profile": "https://images.pexels.com/photos/432722/pexels-photo-432722.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+}
+]

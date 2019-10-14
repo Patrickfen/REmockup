@@ -2,6 +2,14 @@ version: "3.7"
 
 services:
 
+    backend:
+        image: "airstorage/backend:dev"
+        build:
+            target: dev
+            context: ./backend
+        volumes:
+            - ./backend:/usr/src/app
+
     frontend:
         image: "airstorage/frontend:dev"
         build:

@@ -70,6 +70,6 @@ import profile from "./VProfile.vue"
     }
 
     .star {
-        margin-left: 25px;
+        // margin-left: 25px;
     }
 </style>
