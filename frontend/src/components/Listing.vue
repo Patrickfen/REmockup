@@ -58,6 +58,14 @@ import profile from "./VProfile.vue"
     }
 </script>
 
+<style lang="scss">
+    html {
+        height: 100vh;
+    }
+</style>
+
+
+
 <style scoped lang="scss">
     .properties:hover {
         background-color: lightgray;    

@@ -1,8 +1,11 @@
 <template>
-    <b-row class="no-r-margin">
-        <listing class="col-md-6" v-for="prop_listing in prop_listings" :prop_listing="prop_listing" :key="prop_listing">
-        </listing>
-    </b-row>
+    <div>
+        <div> <b-alert class="alert" show><h3 class="help-text">Kies alstublieft de optie die u het meest vertrouwd</h3></b-alert></div>
+        <b-row class="no-r-margin">
+            <listing class="listing col-md-6" v-for="prop_listing in prop_listings" :prop_listing="prop_listing" :key="prop_listing">
+            </listing>
+        </b-row>
+    </div>
 </template>
 
 <script>
@@ -114,11 +117,22 @@ import dataset from "@/assets/dataset.json"
 </script>
 
 <style scoped lang="scss">
-    listing {
-        height: 50%;
+    .listing {
+        // height: 45%;
+        // max-height: 45vh;
+        height: 50vh;
+        // overflow: visible;
+    }
+
+    .help-text {
+        text-align: center;
     }
 
     .no-r-margin {
         margin-right: 0;
+    }
+
+    .alert {
+        margin-bottom: 0px !important;
     }
 </style>

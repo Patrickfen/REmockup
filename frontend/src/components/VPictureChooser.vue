@@ -27,7 +27,7 @@
 </script>
 
 <style scoped lang="scss">
-.v-picture-chooser{
+.v-picture-chooser {
     position:relative;
     padding:0;
     margin:0;
@@ -41,12 +41,13 @@
     background-repeat: no-repeat;
     border-radius:5px;
 
-    .thumbnails{
+    .thumbnails {
         position:absolute;
         bottom:0;
         width:100%;
         overflow-x: hidden;
-        img{
+
+        img {
             cursor:pointer;
             width:70px;
             height:70px;
