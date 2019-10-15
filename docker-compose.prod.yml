@@ -6,26 +6,30 @@ services:
         image: "airstorage/frontend:prod"
         build:
             target: prod
-            context: ./frontend
+            context: ./refrontend
 
-    backend:
-        command: gunicorn server:app --bind 0.0.0.0:80 --workers 2
+    rebackend:
+        command: "gunicorn -b 0.0.0.0:80 --error-logfile - server:app"
         image: "airstorage/backend:prod"
         build:
             target: prod
-            context: ./backend
+            context: ./rebackend
+        networks:
+            - private
+            - public
         labels:
             - "traefik.enable=false"
         volumes:
-            - ./backend/database.db:/usr/src/app/database.db
+            - "./rebackend/database.db:/usr/src/app/database.db"
     
-    nginx:
+    renginx:
         command: nginx -g "daemon off";
         image: "airstorage/nginx:prod"
         build:
             target: prod
-            context: ./nginx
+            context: ./renginx
         networks:
+            - private
             - public
         labels:
             - "traefik.enable=true"
@@ -33,6 +37,8 @@ services:
             - "traefik.frontend.rule=Host:airstorage.nl"
             - "traefik.port=80"
             - "traefik.docker.network=public"
+        depends_on:
+            - rebackend
 
 networks:
     private:
