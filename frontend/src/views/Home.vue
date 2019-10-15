@@ -5,7 +5,7 @@
             <h3>Thank you for participating in the AirStorage prototype survey</h3>
             <p>
                 On the next page, you will be presented with 4 or less listings.<br>
-                Out of these options, please select the listing you think is the most<i>trustworthy</i>.<br>
+                Out of these options, please select the listing you think is the most <i>trustworthy</i>.<br>
                 After, you will be asked to fill in a short (~5 minutes) survey of your experience.<br>
                 Please press the button to start:<br><br>
             </p>

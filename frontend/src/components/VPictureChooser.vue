@@ -1,6 +1,5 @@
 <template>
-    <b-col md="6" class="v-picture-chooser" :style="{backgroundImage: 'url(' + images[chosen] + ')'}" 
-        v-on:click.self="$parent.choose()">
+    <b-col md="6" class="v-picture-chooser" :style="{backgroundImage: 'url(' + images[chosen] + ')'}" >
         <div class="thumbnails" v-if="images.length > 1">
             <template v-for="(img, idx) in images">
                 <img :src="img" @click="chosen=idx"></img>

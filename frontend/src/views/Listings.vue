@@ -1,9 +1,30 @@
 <template>
     <div>
-        <div> <b-alert class="alert" show><h3 class="help-text">Kies alstublieft de optie die u het meest vertrouwd</h3></b-alert></div>
-        <b-row class="no-r-margin">
-            <listing class="listing col-md-6" v-for="prop_listing in prop_listings" :prop_listing="prop_listing" :key="prop_listing">
-            </listing>
+        <div> 
+            <b-alert class="alert" show>  
+                <b-row class="text-c">
+                    <h3 class="text-c help-text">Please choose the listing you find the most trustworthy. ({{actions}} / {{total}})</h3>
+                </b-row>
+                <b-row class=""  v-if="biased">
+                    <b-spinner class="spinner-center" style="width: 3rem; height: 3rem;" label="Large Spinner"></b-spinner>
+                </b-row>
+            </b-alert>
+        </div>
+        <b-row>
+            <b-col class="no-padding">  
+                <b-row class="no-r-margin" if="pool">
+                    <listing class="listing col-md-6" v-for="prop_listing in prop_listings" :prop_listing="prop_listing" :key="prop_listing.Name">
+                    </listing>
+                </b-row>
+            </b-col>
+            <b-col v-if="biased" md="2">
+                <b-row>
+                    <div class="addtext">Advertisement</div>
+                    <b-img fluid :src="require('../assets/lock-eye.png')"></b-img>
+                    <div class="add"></div>
+                </b-row>
+
+            </b-col>
         </b-row>
     </div>
 </template>
@@ -11,6 +32,7 @@
 <script>
 import listing from "../components/Listing.vue"
 import dataset from "@/assets/dataset.json"
+import bad_dataset from "@/assets/datasetbad.json"
     export default {
         name: 'listings',
         data() {
@@ -18,16 +40,23 @@ import dataset from "@/assets/dataset.json"
                 last : false,
                 prop_listings : [],
                 order : {},
-                pool : dataset
+                biased: null,
+                pool : dataset,
+                timestamps : [],
+                actions: 0,
+                total: 0
             }
         },
         mounted() {
+            this.biased = ((Math.random() > 0.5) ? true : false)
             this.prop_listings = this.shuffle(this.pool).slice(0,4);
             for (let i = 0; i < this.pool.length; i++) {
                 let key = this.pool[i].Name
                 this.order[key] = []
             }
             console.log(JSON.stringify(this.order, null, 4))
+            this.total = this.pool.length;
+
         },
         methods: {
             shuffle(array) {
@@ -40,7 +69,15 @@ import dataset from "@/assets/dataset.json"
                 return array
             },
             choose(prop_listing) {
-                const temp = []
+                const temp = [];
+                var currentdate = new Date(); 
+                var dtString = "" + currentdate.getDate() + "/"
+                                + (currentdate.getMonth()+1)  + "/" 
+                                + currentdate.getFullYear() + " "  
+                                + currentdate.getHours() + ":"  
+                                + currentdate.getMinutes() + ":" 
+                                + currentdate.getSeconds();
+                this.timestamps.push(dtString);
                 Object.keys(this.order).forEach(key => {
                     let value = this.order[key];
                     for (let j = 0; j < this.prop_listings.length; j++) {
@@ -59,10 +96,25 @@ import dataset from "@/assets/dataset.json"
                 console.log(this.order)
                 
                 if(this.last) {
-                    this.$router.push("evaluation");
+                    const resultSet = {
+                        "order" : this.order,
+                        "timestamps" : this.timestamps,
+                        "biased" : this.biased
+                    }
+                    var ctx = this;
+                    this.axios.post('/api', resultSet)
+                    .then(function(){
+                        ctx.$router.push("evaluation");
+                    })
+                    .catch(function(e){
+                        alert('Something went wrong');
+                        console.log(e);
+                    })
                 } else {
                     this.prop_listings = this.createListingFromOld();
                 }
+                
+                this.actions += 1
             },
             createListingFromOld() {
                 const empty = []
@@ -134,5 +186,34 @@ import dataset from "@/assets/dataset.json"
 
     .alert {
         margin-bottom: 0px !important;
+        text-align: center;
+    }
+
+    .add {
+        background-image: url('../assets/lock-ad.png');
+        background-position: center;
+        background-size: cover;
+        width: 100%;
+        height: 500px;
+    }
+    
+    .addtext {
+        color: #665;
+        text-align: right;
+        display: inline-block;
+        padding-right: 20px;
+    }
+
+    .no-padding {
+        padding-right: 0px;
+    }
+
+    .text-c {
+        text-align: center;
+        width: 100%;
+    }
+
+    .spinner-center {
+        margin: auto;
     }
 </style>

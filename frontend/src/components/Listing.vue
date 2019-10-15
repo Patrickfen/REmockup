@@ -1,8 +1,8 @@
 <template>
-    <b-card no-body class="overflow-hidden">
-        <b-row no-gutters class="properties">
-            <picture-chooser :images="prop_listing.Image"></picture-chooser>
-            <b-col md="6" @click="choose()">
+    <b-card @click="choose($event)" no-body class="overflow-hidden properties">
+        <b-row no-gutters>
+            <picture-chooser  :images="prop_listing.Image"></picture-chooser>
+            <b-col md="6">
                 <badge class="badge" v-if="prop_listing.Verified == 'True'" />
                 <b-card-body :title="prop_listing.Name">
                     <b-row>
@@ -51,7 +51,10 @@ import profile from "./VProfile.vue"
         mounted(){
         },
         methods: {
-            choose() {
+            choose(ev) {
+                if (ev.target.tagName == "IMG") {
+                    return
+                } 
                 this.$parent.choose(this.prop_listing)
             }
         }

@@ -1,0 +1,63 @@
+[{
+    "Name": "5 square meters storage",
+    "Owner": "A-Side Self Storage",
+    "Availability": "Business Hours",
+    "Security": "Locked Area",
+    "Image": ["https://upload.wikimedia.org/wikipedia/commons/7/74/Wooden_pallet_with_glove.jpg"
+    ], 
+    "Stars": 2,
+    "Profile": "https://g5-assets-cld-res.cloudinary.com/image/upload/q_auto,f_auto,c_fill,g_center,h_600,w_1000/v1512514747/g5/g5-c-iqbdlivi-chesapeake-resources-inc-client/g5-cl-57b5rzoj2-chesapeake-mini-storage-mid/uploads/Untitled-18_puhjqc.png",
+    "Verified": "True"
+},
+{
+    "Name": "Basement Room Available",
+    "Owner": "Greta",
+    "Availability": "By Appointment Only",
+    "Security": "Smoke Detectors",
+    "Image": ["https://www.thespruce.com/thmb/z6jtifDQDLXZZ7MDAeh4dK76zEo=/960x0/filters:no_upscale():max_bytes(150000):strip_icc()/BasementRemodelBefore-Remodelaholic-5b41a84146e0fb0037ce2ed4.JPG"],
+    "Stars": 2,
+    "Profile": "https://images.pexels.com/photos/432722/pexels-photo-432722.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+},
+{
+    "Name": "Attic spare room",
+    "Owner": "Johnny",
+    "Availability": "Once monthly",
+    "Security": "I have a dog",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/5638/41742/2560x2560/41742.jpeg"],
+    "Stars": 2,
+    "Profile": "https://images.pexels.com/photos/432722/pexels-photo-432722.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+},
+{
+    "Name": "Covered storage area",
+    "Owner": "Jim Q",
+    "Availability": "By Appointment Only",
+    "Security": "",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/5638/41742/2560x2560/41742.jpeg"],
+    "Stars": 1,
+    "Profile": "https://images.pexels.com/photos/432722/pexels-photo-432722.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "Review": [{
+        "author": "Henk F.",
+        "time": "3 weeks ago",
+        "text": "Worst storage ever, Jim stored my electronics under a tarp outside. Completely busted!"
+    },
+    {
+        "author": "Jim Q.",
+        "time": "2 weeks ago",
+        "text": "Henk should have checked ALL pictures, not my fault that idiot doesn't check."
+    }]
+},
+{
+    "Name": "Backyard storage",
+    "Owner": "Leslie",
+    "Availability": "By Appointment Only",
+    "Security": "",
+    "Image": ["https://d3mjpbzzco5v9p.cloudfront.net/5638/41742/2560x2560/41742.jpeg"],
+    "Stars": 3,
+    "Profile": "https://images.pexels.com/photos/432722/pexels-photo-432722.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+    "Review": [{
+        "author": "Wout",
+        "time": "3 weeks ago",
+        "text": "Not the best but OK for short storing of items"
+    }]
+}
+]

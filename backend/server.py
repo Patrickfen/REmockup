@@ -2,10 +2,15 @@ from flask import Flask, request
 import sqlite3, json
 from flask import current_app, g
 from flask.cli import with_appcontext
+from flask_basicauth import BasicAuth
 
 DATABASE = '/usr/src/app/database.db'
 
 app = Flask(__name__)
+app.config['BASIC_AUTH_USERNAME'] = 'requirements'
+app.config['BASIC_AUTH_PASSWORD'] = 'engineering'
+
+basic_auth = BasicAuth(app)
 
 def get_db():
     if 'db' not in g:
@@ -46,6 +51,7 @@ def submit():
     return 'OK'
 
 @app.route('/api/dl', methods = ['GET'])
+@basic_auth.required
 def download():
     res = []
     rows = query_db('SELECT * FROM results')
@@ -58,6 +64,7 @@ def download():
     return json.dumps(res)
 
 @app.route('/api/setup', methods = ['GET'])
+@basic_auth.required
 def setup():
     setup_db()
     return 'OK'

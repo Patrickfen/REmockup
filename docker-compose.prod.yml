@@ -30,7 +30,7 @@ services:
         labels:
             - "traefik.enable=true"
             - "traefik.backend=airstorage-nginx"
-            - "traefik.frontend.rule=Host:airstorage.patrickfen.nl"
+            - "traefik.frontend.rule=Host:airstorage.nl"
             - "traefik.port=80"
             - "traefik.docker.network=public"
 

@@ -2,10 +2,9 @@
 
 <template>
     <ul>
-        <li v-if="prop_listing.Owner != ''">Name: {{prop_listing.Owner}}</li>
-        <li v-if="prop_listing.Cost != ''">Cost: {{prop_listing.Cost}}</li>
-        <li v-if="prop_listing.Availability != ''">Availability: {{prop_listing.Availability}}</li>
-        <li v-if="prop_listing.Security != ''">Security: {{prop_listing.Security}}</li>
+        <li v-if="prop_listing.Owner != ''"><b>Name:</b> {{prop_listing.Owner}}</li>
+        <li v-if="prop_listing.Availability != ''"><b>Availability:</b> {{prop_listing.Availability}}</li>
+        <li v-if="prop_listing.Security != ''"><b>Security:</b> {{prop_listing.Security}}</li>
     </ul>
 </template>
 
