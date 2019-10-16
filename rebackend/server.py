@@ -3,8 +3,26 @@ import sqlite3, json
 from flask import current_app, g
 from flask.cli import with_appcontext
 from flask_basicauth import BasicAuth
+from logging.config import dictConfig
 
 DATABASE = '/usr/src/app/database.db'
+
+dictConfig({
+    'version': 1,
+    'formatters': {'default': {
+        'format': '[%(asctime)s] %(levelname)s in %(module)s: %(message)s',
+    }},
+    'handlers': {'wsgi': {
+        'class': 'logging.StreamHandler',
+        'stream': 'ext://sys.stdout',
+        'formatter': 'default'
+    }},
+    'root': {
+        'level': 'INFO',
+        'handlers': ['wsgi']
+    }
+})
+
 
 app = Flask(__name__)
 app.config['BASIC_AUTH_USERNAME'] = 'requirements'

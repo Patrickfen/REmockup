@@ -2,26 +2,26 @@ version: "3.7"
 
 services:
 
-    backend:
+    rebackend:
         image: "airstorage/backend:dev"
         build:
             target: dev
-            context: ./backend
+            context: ./rebackend
         volumes:
-            - ./backend:/usr/src/app
+            - ./rebackend:/usr/src/app
 
     frontend:
         image: "airstorage/frontend:dev"
         build:
             target: dev
-            context: ./frontend
+            context: ./refrontend
         volumes:
-            - ./frontend:/usr/src/app
+            - ./refrontend:/usr/src/app
         ports:
             - "8800:80"
 
-    nginx:
+    renginx:
         image: "airstorage/nginx:dev"
         build:
             target: prod
-            context: ./nginx
+            context: ./renginx

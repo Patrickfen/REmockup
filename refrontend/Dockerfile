@@ -8,5 +8,5 @@ RUN mkdir ../node_modules && ln -s ../node_modules && npm install && rm ./node_m
 # == production stage ==
 FROM dev AS prod
 COPY . .
-RUN npm run test
+RUN npm install bootstrap bootstrap-vue 
 RUN npm run build
