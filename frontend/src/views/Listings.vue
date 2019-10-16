@@ -172,9 +172,17 @@ import bad_dataset from "@/assets/datasetbad.json"
     .listing {
         // height: 45%;
         // max-height: 45vh;
-        height: 50vh;
+        // height: 50vh;
+        
         // overflow: visible;
     }
+
+    @media only screen and (max-width: 600px) {
+        .listing {
+            max-height: 1000px;
+        }
+    }
+
 
     .help-text {
         text-align: center;
