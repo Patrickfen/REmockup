@@ -4,7 +4,7 @@ import numpy as np
 import json
 
 def get_response():
-    response = requests.get('https://airstorage.nl/api/dl', auth=('****', '****'))
+    response = requests.get('https://airstorage.nl/api/dl', auth=('requirements', 'engineering'))
     return json.loads(response.text)
 
 def debug_out(data):
@@ -53,7 +53,8 @@ def graph_freq(order):
     plt.bar(labels, freqs, label="Frequency of best chosen listing")
     plt.xticks(labels, rotation="vertical")
     plt.legend()
-    plt.show()
+    # plt.show()
+    plt.savefig("./graphs/best.png")
 
     lengths, names = list(zip(*order[0]))
     result = {name : 0 for name in names}
@@ -61,7 +62,6 @@ def graph_freq(order):
     for sub in order: 
         lengths, names = list(zip(*sub))
         idx = np.argmin(lengths)
-        print(idx)
         result[names[idx]] += 1
     
     labels = [x.replace(" ", "\n") for _, x in sorted(zip(result.values(), result.keys()))]
@@ -70,7 +70,7 @@ def graph_freq(order):
     plt.bar(labels, freqs, label="Frequency of worst listing")
     plt.xticks(labels, rotation="vertical")
     plt.legend()
-    plt.show()
+    plt.savefig("./graphs/worst.png")
 
         
 if __name__ == "__main__":
