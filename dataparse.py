@@ -115,7 +115,21 @@ def get_freqs(order):
         idx = np.argmax(lengths)
         result[names[idx]] += 1
 
-    labels = ["\n".join(x.split(" ")[:2]) for _, x in sorted(zip(result.values(), result.keys()))]
+    labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), result.keys()))]
+    freqs = sorted(list(result.values()))
+    freqs = list(map (lambda x: x / sum(freqs), freqs))
+    return (labels, freqs)
+
+def get_freqs_worst(order):
+    lengths, names = list(zip(*order[0]))
+    result = {name : 0 for name in names}
+
+    for sub in order: 
+        lengths, names = list(zip(*sub))
+        idx = np.argmin(lengths)
+        result[names[idx]] += 1
+    
+    labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), result.keys()))]
     freqs = sorted(list(result.values()))
     freqs = list(map (lambda x: x / sum(freqs), freqs))
     return (labels, freqs)
@@ -136,39 +150,32 @@ def graph_freq(order, biased_order, name, title):
     rects2 = ax.bar(ind + width/2, biased_freqs, width,
                 label='Biased')
 
-    # plt.bar(labels, freqs, label="Frequency of best chosen listing")
-    # ax.set_xticks(ind)
-    # ax.set_xticklabels(labels, fontdict=
-    # {
-    #     'fontsize': 6,
-    #     'fontweight': 3,
-    #     'verticalalignment': 'center',
-    #     'horizontalalignment' : 'center'
-    # })
     plt.xticks(ind, labels, rotation='vertical', weight="8")
     plt.title(title.format("best", len(freqs)))
     plt.legend()
     plt.subplots_adjust(bottom=0.15)
 
-    plt.savefig("./graphs/best_{}.png".format(name))
+    plt.savefig("./graphs/best_both.png")
 
-    lengths, names = list(zip(*order[0]))
-    result = {name : 0 for name in names}
-
-    for sub in order: 
-        lengths, names = list(zip(*sub))
-        idx = np.argmin(lengths)
-        result[names[idx]] += 1
     
-    labels = [x.replace(" ", "\n") for _, x in sorted(zip(result.values(), result.keys()))]
-    freqs = sorted(list(result.values()))
-    freqs = list(map (lambda x: x / sum(freqs), freqs))
+    labels, freqs = get_freqs(order)
+    biased_labels, biased_freqs = get_freqs(biased_order)
+
+    ind = np.arange(len(freqs))
+    width = 0.2
     plt.figure(figsize=(9,9))
-    plt.bar(labels, freqs, label="Frequency of worst listing")
-    plt.xticks(labels, rotation="vertical")
+    fig, ax = plt.subplots(figsize=(9,9))
+    rects1 = ax.bar(ind - width/2, freqs, width,
+                label='Unbiased')
+    rects2 = ax.bar(ind + width/2, biased_freqs, width,
+                label='Biased')
+
+    plt.xticks(ind, labels, rotation='vertical', weight="8")
+    plt.title(title.format("best", len(freqs)))
     plt.legend()
+    plt.subplots_adjust(bottom=0.15)
     plt.title(title.format("worst", len(freqs)))
-    plt.savefig("./graphs/worst_{}.png".format(name))
+    plt.savefig("./graphs/worst_both.png")
 
 
 '''
