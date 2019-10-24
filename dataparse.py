@@ -106,10 +106,7 @@ def parse2(responses):
     return results
 
 
-"""
- - Takes the both the best and worst listings and puts them into a frequency barchart.
-"""
-def graph_freq(order, name, title):
+def get_freqs(order):
     lengths, names = list(zip(*order[0]))
     result = {name : 0 for name in names}
     
@@ -121,9 +118,25 @@ def graph_freq(order, name, title):
     labels = [x.replace(" ", "\n") for _, x in sorted(zip(result.values(), result.keys()))]
     freqs = sorted(list(result.values()))
     freqs = list(map (lambda x: x / sum(freqs), freqs))
-    
+    return (labels, freqs)
+
+"""
+ - Takes the both the best and worst listings and puts them into a frequency barchart.
+"""
+def graph_freq(order, biased_order, name, title):
+    labels, freqs = get_freqs(order)
+    biased_labels, biased_freqs = get_freqs(biased_order)
+
+    ind = np.arange(len(freqs))
+    width = 0.35
     plt.figure(figsize=(9,9))
-    plt.bar(labels, freqs, label="Frequency of best chosen listing")
+    fig, ax = plt.subplots()
+    rects1 = ax.bar(ind - width/2, freqs, width, yerr=np.std(freqs),
+                label='Unbiased')
+    rects2 = ax.bar(ind + width/2, biased_freqs, width, yerr=np.std(biased_freqs),
+                label='Biased')
+
+    # plt.bar(labels, freqs, label="Frequency of best chosen listing")
     plt.xticks(labels, rotation="vertical")
     plt.title(title.format("best", len(freqs)))
     plt.legend()
