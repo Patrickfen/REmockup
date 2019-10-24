@@ -115,7 +115,7 @@ def get_freqs(order):
         idx = np.argmax(lengths)
         result[names[idx]] += 1
 
-    labels = [x.replace(" ", "\n") for _, x in sorted(zip(result.values(), result.keys()))]
+    labels = [x.replace(" ", "\n")[:2] for _, x in sorted(zip(result.values(), result.keys()))]
     freqs = sorted(list(result.values()))
     freqs = list(map (lambda x: x / sum(freqs), freqs))
     return (labels, freqs)
@@ -128,18 +128,27 @@ def graph_freq(order, biased_order, name, title):
     biased_labels, biased_freqs = get_freqs(biased_order)
 
     ind = np.arange(len(freqs))
-    width = 0.35
+    width = 0.2
     plt.figure(figsize=(9,9))
-    fig, ax = plt.subplots()
-    rects1 = ax.bar(ind - width/2, freqs, width, yerr=np.std(freqs),
+    fig, ax = plt.subplots(figsize=(9,9))
+    rects1 = ax.bar(ind - width/2, freqs, width,
                 label='Unbiased')
-    rects2 = ax.bar(ind + width/2, biased_freqs, width, yerr=np.std(biased_freqs),
+    rects2 = ax.bar(ind + width/2, biased_freqs, width,
                 label='Biased')
 
     # plt.bar(labels, freqs, label="Frequency of best chosen listing")
-    plt.xticks(labels, rotation="vertical")
+    # ax.set_xticks(ind)
+    # ax.set_xticklabels(labels, fontdict=
+    # {
+    #     'fontsize': 6,
+    #     'fontweight': 3,
+    #     'verticalalignment': 'center',
+    #     'horizontalalignment' : 'center'
+    # })
+    plt.xticks(ind, labels, rotation='vertical', weight="8")
     plt.title(title.format("best", len(freqs)))
     plt.legend()
+    plt.subplots_adjust(bottom=0.15)
 
     plt.savefig("./graphs/best_{}.png".format(name))
 
@@ -226,8 +235,8 @@ if __name__ == "__main__":
     response = get_response()
     # print(response)
     biased, listings = parse_response(response)
-    graph_freq(listings, "Non_biased", "Non biased {} listing, n = {}")
-    graph_freq(biased, "Biased", "Biased {} listing, n = {}")
+    graph_freq(listings, biased, "Non_biased", "Non biased {} listing, n = {}")
+    # graph_freq(biased, "Biased", "Biased {} listing, n = {}")
 
 
     print("==parse2==")
