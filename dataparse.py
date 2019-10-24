@@ -115,7 +115,7 @@ def get_freqs(order):
         idx = np.argmax(lengths)
         result[names[idx]] += 1
 
-    labels = [x.replace(" ", "\n")[:2] for _, x in sorted(zip(result.values(), result.keys()))]
+    labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), result.keys()))]
     freqs = sorted(list(result.values()))
     freqs = list(map (lambda x: x / sum(freqs), freqs))
     return (labels, freqs)
