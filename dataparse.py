@@ -122,7 +122,7 @@ def get_freqs(order, biased_order):
         idx = np.argmax(lengths)
         biased_result[names[idx]] += 1
 
-    merged_result = [(key, value, biased_result[key]) for key, value in sorted(result.items(), key=(lambda x: x[1]))]
+    merged_result = [(key, value, biased_result[key]) for key, value in sorted(result.items(), key=(lambda x: x[0]))]
     biased_freqs = []
     freqs = []
     labels = []
@@ -138,6 +138,7 @@ def get_freqs(order, biased_order):
 
 def get_freqs_worst(order, biased_order):
     lengths, all_names = list(zip(*order[0]))
+    print(all_names)
     result = {name : 0 for name in all_names}
     biased_result = {name : 0 for name in all_names}
     
@@ -151,7 +152,7 @@ def get_freqs_worst(order, biased_order):
         idx = np.argmin(lengths)
         biased_result[names[idx]] += 1
 
-    merged_result = [(key, value, biased_result[key]) for key, value in sorted(result.items(), key=(lambda x: x[1]))]
+    merged_result = [(key, value, biased_result[key]) for key, value in sorted(result.items(), key=(lambda x: x[0]))]
     biased_freqs = []
     freqs = []
     labels = []
@@ -160,29 +161,14 @@ def get_freqs_worst(order, biased_order):
         biased_freqs.append(item[2])
         labels.append("\n".join(item[0].split(" ")[:3]))
     
-
     biased_freqs = list(map (lambda x: x / sum(biased_freqs), biased_freqs))
     freqs = list(map (lambda x: x / sum(freqs), freqs))
     return (labels, freqs, biased_freqs)
 
-
-    # lengths, names = list(zip(*order[0]))
-    # result = {name : 0 for name in names}
-
-    # for sub in order: 
-    #     lengths, names = list(zip(*sub))
-    #     idx = np.argmin(lengths)
-    #     result[names[idx]] += 1
-    
-    # labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), result.keys()))]
-    # freqs = sorted(list(result.values()))
-    # freqs = list(map (lambda x: x / sum(freqs), freqs))
-    # return (labels, freqs)
-
 """
  - Takes the both the best and worst listings and puts them into a frequency barchart.
 """
-def graph_freq(order, biased_order, name, title):
+def graph_freq(order, biased_order, title):
     labels, freqs, biased_freqs = get_freqs(order, biased_order)
     # biased_labels, biased_freqs = get_freqs(biased_order)
 
@@ -196,15 +182,18 @@ def graph_freq(order, biased_order, name, title):
                 label='Biased')
 
     plt.xticks(ind, labels, rotation='vertical', weight="8")
-    plt.title(title.format("best"))
+    plt.title(title.format("Best"))
     plt.legend()
+    plt.ylabel("Frequency chosen as best normalised to the number of participants")
+    plt.xlabel("Listings")
+
+    plt.ylim(0, 0.9)
     plt.subplots_adjust(bottom=0.15)
 
     plt.savefig("./graphs/best_both.png")
 
     
     labels, freqs, biased_freqs = get_freqs_worst(order, biased_order)
-    # labels, freqs, biased_labels, biased_freqs = get_freqs_worst(biased_order)
 
     ind = np.arange(len(freqs))
     width = 0.2
@@ -215,11 +204,13 @@ def graph_freq(order, biased_order, name, title):
     rects2 = ax.bar(ind + width/2, biased_freqs, width,
                 label='Biased')
 
+    plt.ylim(0, 0.9)
     plt.xticks(ind, labels, rotation='vertical', weight="8")
-    plt.title(title.format("best"))
+    plt.ylabel("Frequency chosen as worst normalised to the number of participants")
+    plt.xlabel("Listings")
     plt.legend()
     plt.subplots_adjust(bottom=0.15)
-    plt.title(title.format("worst"))
+    plt.title(title.format("Worst"))
     plt.savefig("./graphs/worst_both.png")
 
 
@@ -294,11 +285,20 @@ def get_googleform_times(objects):
         res.append({'id':item['id'], 'ts':item['ts']})
     return res
         
+def create_samplePlot(biased, listings):
+    plt.figure()
+    plt.bar(np.arange(0,2), [len(listings), len(biased)])
+    plt.xticks(np.arange(0,2), ["Non-Biased", "Biased",])
+    plt.title("Distribution Biased vs Non Biased")
+    plt.ylabel("Frequency")
+    plt.savefig("./graphs/sample.png")
+
+
 if __name__ == "__main__":
     response = get_response()
     # print(response)
     biased, listings = parse_response(response)
-    graph_freq(listings, biased, "Non_biased", "Non biased {} listing")
+    graph_freq(listings, biased, "{} Non biased vs Biased listings")
     # graph_freq(biased, "Biased", "Biased {} listing, n = {}")
 
 
@@ -309,3 +309,4 @@ if __name__ == "__main__":
     print("==crossref google==")
     print(get_googleform_times(objects))
 
+    create_samplePlot(biased, listings)
