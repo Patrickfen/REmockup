@@ -143,15 +143,15 @@ def get_freqs_worst(order, biased_order):
     
     for sub in order:
         lengths, names = list(zip(*sub))
-        idx = np.argmax(lengths)
+        idx = np.argmin(lengths)
         result[names[idx]] += 1
     
     for sub in biased_order:
         lengths, names = list(zip(*sub))
-        idx = np.argmax(lengths)
+        idx = np.argmin(lengths)
         biased_result[names[idx]] += 1
 
-    merged_result = [(key, value, biased_result[key]) for key, value in sorted(result.items(), key=(lambda x: x[1]))[::-1]]
+    merged_result = [(key, value, biased_result[key]) for key, value in sorted(result.items(), key=(lambda x: x[1]))]
     biased_freqs = []
     freqs = []
     labels = []
