@@ -128,24 +128,54 @@ def get_freqs(order, biased_order):
         idx = np.argmax(lengths)
         biased_result[names[idx]] += 1
 
-    biased_labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), biased_result.keys()))]
-    freqs = sorted(list(biased_result.values()))
-    freqs = list(map (lambda x: x / sum(freqs), freqs))
-    return (labels, freqs, biased_labels, biased_result)
+    print(result.keys())
+    print(biased_result.keys())
 
-def get_freqs_worst(order):
+    biased_labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), biased_result.keys()))]
+    biased_freqs = sorted(list(biased_result.values()))
+    biased_freqs = list(map (lambda x: x / sum(biased_freqs), biased_freqs))
+    return (labels, freqs, biased_labels, biased_freqs)
+
+def get_freqs_worst(order, biased_order):
     lengths, names = list(zip(*order[0]))
     result = {name : 0 for name in names}
-
-    for sub in order: 
+    
+    for sub in order:
         lengths, names = list(zip(*sub))
         idx = np.argmin(lengths)
         result[names[idx]] += 1
-    
+
     labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), result.keys()))]
     freqs = sorted(list(result.values()))
     freqs = list(map (lambda x: x / sum(freqs), freqs))
-    return (labels, freqs)
+
+# ------------------------------------------
+    lengths, names = list(zip(*biased_order[0]))
+    biased_result = {name : 0 for name in names}
+    
+    for sub in biased_order:
+        lengths, names = list(zip(*sub))
+        idx = np.argmin(lengths)
+        biased_result[names[idx]] += 1
+
+    biased_labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), biased_result.keys()))]
+    biased_freqs = sorted(list(biased_result.values()))
+    biased_freqs = list(map (lambda x: x / sum(biased_freqs), biased_freqs))
+    return (labels, freqs, biased_labels, biased_freqs)
+
+
+    # lengths, names = list(zip(*order[0]))
+    # result = {name : 0 for name in names}
+
+    # for sub in order: 
+    #     lengths, names = list(zip(*sub))
+    #     idx = np.argmin(lengths)
+    #     result[names[idx]] += 1
+    
+    # labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), result.keys()))]
+    # freqs = sorted(list(result.values()))
+    # freqs = list(map (lambda x: x / sum(freqs), freqs))
+    # return (labels, freqs)
 
 """
  - Takes the both the best and worst listings and puts them into a frequency barchart.
@@ -164,15 +194,15 @@ def graph_freq(order, biased_order, name, title):
                 label='Biased')
 
     plt.xticks(ind, labels, rotation='vertical', weight="8")
-    plt.title(title.format("best", len(freqs)))
+    plt.title(title.format("best"))
     plt.legend()
     plt.subplots_adjust(bottom=0.15)
 
     plt.savefig("./graphs/best_both.png")
 
     
-    labels, freqs = get_freqs(order)
-    biased_labels, biased_freqs = get_freqs(biased_order)
+    labels, freqs, biased_labels, biased_freqs = get_freqs_worst(order, biased_order)
+    # labels, freqs, biased_labels, biased_freqs = get_freqs_worst(biased_order)
 
     ind = np.arange(len(freqs))
     width = 0.2
@@ -184,10 +214,10 @@ def graph_freq(order, biased_order, name, title):
                 label='Biased')
 
     plt.xticks(ind, labels, rotation='vertical', weight="8")
-    plt.title(title.format("best", len(freqs)))
+    plt.title(title.format("best"))
     plt.legend()
     plt.subplots_adjust(bottom=0.15)
-    plt.title(title.format("worst", len(freqs)))
+    plt.title(title.format("worst"))
     plt.savefig("./graphs/worst_both.png")
 
 
@@ -266,7 +296,7 @@ if __name__ == "__main__":
     response = get_response()
     # print(response)
     biased, listings = parse_response(response)
-    graph_freq(listings, biased, "Non_biased", "Non biased {} listing, n = {}")
+    graph_freq(listings, biased, "Non_biased", "Non biased {} listing")
     # graph_freq(biased, "Biased", "Biased {} listing, n = {}")
 
 
