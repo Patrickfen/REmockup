@@ -4,6 +4,7 @@ from datetime import datetime
 import numpy as np
 import json
 import matplotlib.colors as pltcolors
+import collections
 
 colors = ["yellow", "greenyellow", "limegreen", "mediumseagreen",
           "mediumaquamarine", "mediumturquoise", "deepskyblue", "steelblue",
@@ -107,61 +108,62 @@ def parse2(responses):
 
 
 def get_freqs(order, biased_order):
-    lengths, names = list(zip(*order[0]))
-    result = {name : 0 for name in names}
+    lengths, all_names = list(zip(*order[0]))
+    result = {name : 0 for name in all_names}
+    biased_result = {name : 0 for name in all_names}
     
     for sub in order:
         lengths, names = list(zip(*sub))
         idx = np.argmax(lengths)
         result[names[idx]] += 1
-
-    labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), result.keys()))]
-    freqs = sorted(list(result.values()))
-    freqs = list(map (lambda x: x / sum(freqs), freqs))
-
-# ------------------------------------------
-    lengths, names = list(zip(*biased_order[0]))
-    biased_result = {name : 0 for name in names}
     
     for sub in biased_order:
         lengths, names = list(zip(*sub))
         idx = np.argmax(lengths)
         biased_result[names[idx]] += 1
 
-    print(result.keys())
-    print(biased_result.keys())
+    merged_result = [(key, value, biased_result[key]) for key, value in sorted(result.items(), key=(lambda x: x[1]))]
+    biased_freqs = []
+    freqs = []
+    labels = []
+    for item in merged_result:
+        freqs.append(item[1])
+        biased_freqs.append(item[2])
+        labels.append("\n".join(item[0].split(" ")[:3]))
+    
 
-    biased_labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), biased_result.keys()))]
-    biased_freqs = sorted(list(biased_result.values()))
     biased_freqs = list(map (lambda x: x / sum(biased_freqs), biased_freqs))
-    return (labels, freqs, biased_labels, biased_freqs)
+    freqs = list(map (lambda x: x / sum(freqs), freqs))
+    return (labels, freqs, biased_freqs)
 
 def get_freqs_worst(order, biased_order):
-    lengths, names = list(zip(*order[0]))
-    result = {name : 0 for name in names}
+    lengths, all_names = list(zip(*order[0]))
+    result = {name : 0 for name in all_names}
+    biased_result = {name : 0 for name in all_names}
     
     for sub in order:
         lengths, names = list(zip(*sub))
-        idx = np.argmin(lengths)
+        idx = np.argmax(lengths)
         result[names[idx]] += 1
-
-    labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), result.keys()))]
-    freqs = sorted(list(result.values()))
-    freqs = list(map (lambda x: x / sum(freqs), freqs))
-
-# ------------------------------------------
-    lengths, names = list(zip(*biased_order[0]))
-    biased_result = {name : 0 for name in names}
     
     for sub in biased_order:
         lengths, names = list(zip(*sub))
-        idx = np.argmin(lengths)
+        idx = np.argmax(lengths)
         biased_result[names[idx]] += 1
 
-    biased_labels = ["\n".join(x.split(" ")[:3]) for _, x in sorted(zip(result.values(), biased_result.keys()))]
-    biased_freqs = sorted(list(biased_result.values()))
+    merged_result = [(key, value, biased_result[key]) for key, value in sorted(result.items(), key=(lambda x: x[1]))[::-1]]
+    biased_freqs = []
+    freqs = []
+    labels = []
+    for item in merged_result:
+        freqs.append(item[1])
+        biased_freqs.append(item[2])
+        labels.append("\n".join(item[0].split(" ")[:3]))
+    
+
     biased_freqs = list(map (lambda x: x / sum(biased_freqs), biased_freqs))
-    return (labels, freqs, biased_labels, biased_freqs)
+    freqs = list(map (lambda x: x / sum(freqs), freqs))
+    return (labels, freqs, biased_freqs)
 
 
     # lengths, names = list(zip(*order[0]))
@@ -181,7 +183,7 @@ def get_freqs_worst(order, biased_order):
  - Takes the both the best and worst listings and puts them into a frequency barchart.
 """
 def graph_freq(order, biased_order, name, title):
-    labels, freqs, biased_labels, biased_freqs = get_freqs(order, biased_order)
+    labels, freqs, biased_freqs = get_freqs(order, biased_order)
     # biased_labels, biased_freqs = get_freqs(biased_order)
 
     ind = np.arange(len(freqs))
@@ -201,7 +203,7 @@ def graph_freq(order, biased_order, name, title):
     plt.savefig("./graphs/best_both.png")
 
     
-    labels, freqs, biased_labels, biased_freqs = get_freqs_worst(order, biased_order)
+    labels, freqs, biased_freqs = get_freqs_worst(order, biased_order)
     # labels, freqs, biased_labels, biased_freqs = get_freqs_worst(biased_order)
 
     ind = np.arange(len(freqs))
