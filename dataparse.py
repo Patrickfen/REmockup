@@ -181,7 +181,7 @@ def graph_freq(order, biased_order, name, title):
 '''
 shows the time of each choice that each user had to make.
 '''
-def graph_time(responses, name, title, both=True):
+def graph_time(responses, name, title, color, both=True):
     if not both:
         plt.figure()
     plt.xlabel("Listing rounds")
@@ -216,7 +216,7 @@ def graph_time(responses, name, title, both=True):
         plt.plot(np.arange(0, len(minimum)), minimum, label="minimum")
         plt.plot(np.arange(0, len(maximum)), maximum, label="maximum")
     ax = plt.gca()
-    color = pltcolors.to_rgba(np.random.choice(colors))
+
     ax.fill_between(np.arange(0,10), stddev, minstddev, facecolor=(color[0], color[1], color[2], 0.5), 
             interpolate=True, label="standard deviation {}".format(name))
 
@@ -226,8 +226,19 @@ def graph_time(responses, name, title, both=True):
 
 def graph_time_both(objects):
     plt.figure()
-    graph_time(objects["biased"], "biased", "Biased Amount of Time spent on each listing")  
-    graph_time(objects["unbiased"], "unbiased", "Biased Amount of Time spent on each listing")
+
+    graph_time(
+        objects["biased"], 
+        "biased", 
+        "Biased Amount of Time spent on each listing", 
+        pltcolors.to_rgba(colors[6])
+    )  
+    graph_time(
+        objects["unbiased"], 
+        "unbiased", 
+        "Biased Amount of Time spent on each listing",
+        pltcolors.to_rgba(colors[0])
+    )
     plt.legend()
     plt.savefig("./graphs/times_{}.png".format("both"))
     # plt.figure()
